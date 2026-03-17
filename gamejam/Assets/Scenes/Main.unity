@@ -128,6 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 13895869}
+  - component: {fileID: 13895870}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -151,6 +152,19 @@ Transform:
   - {fileID: 1409829086}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &13895870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13895868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c0efcf77967e14c83170829fd3282c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveCamera
+  cameraPosition: {fileID: 891337705}
 --- !u!1 &347465234
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,10 +241,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 3
-  groundDrag: 1
-  jumpForce: 2
-  jumpCooldown: 2
-  airMultiplier: 1
+  groundDrag: 5
+  jumpForce: 4
+  jumpCooldown: 1
+  airMultiplier: 2
   walkSpeed: 0
   sprintSpeed: 0
   jumpKey: 32
