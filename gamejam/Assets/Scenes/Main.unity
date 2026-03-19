@@ -974,9 +974,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
 --- !u!114 &347465239
-=======
 --- !u!1 &379489683 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7111128216481662804, guid: 6d71b42387cc827409d6caf0c954a3a9, type: 3}
@@ -1005,13 +1003,11 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: 8285766826149475865, guid: 6d71b42387cc827409d6caf0c954a3a9, type: 3}
 --- !u!114 &379489688
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
   m_GameObject: {fileID: 347465234}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1019,7 +1015,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FallDeath
   deathY: -20
-=======
   m_GameObject: {fileID: 379489683}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1126,7 +1121,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1356776668}
   m_SourcePrefab: {fileID: 100100000, guid: 45356c0932d9f9040ae7a81ae479dee4, type: 3}
->>>>>>> Stashed changes
 --- !u!1 &395895634
 GameObject:
   m_ObjectHideFlags: 0
