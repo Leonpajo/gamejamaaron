@@ -875,7 +875,6 @@ GameObject:
   - component: {fileID: 347465236}
   - component: {fileID: 347465237}
   - component: {fileID: 347465238}
-  - component: {fileID: 347465239}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -941,7 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   walkSpeed: 2.5
-  sprintSpeed: 5
+  sprintSpeed: 7
   groundDrag: 5
   jumpForce: 8
   jumpCooldown: 1
@@ -974,7 +973,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &347465239
 --- !u!1 &379489683 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7111128216481662804, guid: 6d71b42387cc827409d6caf0c954a3a9, type: 3}
@@ -1002,38 +1000,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8285766826149475865, guid: 6d71b42387cc827409d6caf0c954a3a9, type: 3}
---- !u!114 &379489688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347465234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dea3ee3e2e29ff4196ffea5184270a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FallDeath
-  deathY: -20
-  m_GameObject: {fileID: 379489683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d39d7cd1101a2942bc78774082d1c54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Islandbob
-  amplitude: 0.16
-  frequency: 0.4
-  enableXDrift: 1
-  xDriftAmplitude: 0.16
-  xDriftFrequencyMultiplier: 0.5
-  enableZDrift: 1
-  zDriftAmplitude: 0.26
-  zDriftFrequencyMultiplier: 0.6
-  enableTilt: 1
-  tiltAmountX: 1.5
-  tiltAmountZ: 1
-  tiltFrequencyMultiplier: 0.7
-  randomisePhaseOnStart: 1
 --- !u!1001 &387987198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1556,9 +1522,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7111128216481662804, guid: 6d71b42387cc827409d6caf0c954a3a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 379489687}
-    - targetCorrespondingSourceObject: {fileID: -7111128216481662804, guid: 6d71b42387cc827409d6caf0c954a3a9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 379489688}
   m_SourcePrefab: {fileID: 100100000, guid: 6d71b42387cc827409d6caf0c954a3a9, type: 3}
 --- !u!1 &560197196 stripped
 GameObject:

@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // sprint
-        isSprinting = Input.GetKey(sprintKey) && grounded;
+        isSprinting = Input.GetKey(sprintKey);
         moveSpeed = isSprinting ? sprintSpeed : walkSpeed;
 
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
