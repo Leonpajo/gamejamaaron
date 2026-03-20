@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement2D : MonoBehaviour
 {
     [Header("2D Movement")]
-    public float moveSpeed = 7f;
+    public float moveSpeed = 4f;
     public float jumpForce = 6f;
     public float groundDrag = 5f;
     public KeyCode jumpKey = KeyCode.Space;
