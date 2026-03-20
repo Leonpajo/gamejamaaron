@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     float verticalInput;
     bool isSprinting;
     float moveSpeed;
-
     Vector3 moveDirection;
     Rigidbody rb;
 
@@ -43,7 +42,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
-
         MyInput();
         SpeedControl();
 
@@ -63,7 +61,6 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        // sprint
         isSprinting = Input.GetKey(sprintKey);
         moveSpeed = isSprinting ? sprintSpeed : walkSpeed;
 
@@ -79,6 +76,13 @@ public class PlayerController : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
+        // Wall stick fix — dont push into walls while airborne
+        if (!grounded && moveDirection != Vector3.zero)
+        {
+            if (Physics.Raycast(transform.position, moveDirection.normalized, 0.6f, whatIsGround))
+                return;
+        }
+
         if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         else
@@ -88,7 +92,6 @@ public class PlayerController : MonoBehaviour
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-
         if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
