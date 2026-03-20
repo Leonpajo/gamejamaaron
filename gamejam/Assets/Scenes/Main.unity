@@ -2262,9 +2262,7 @@ GameObject:
   - component: {fileID: 762948483}
   - component: {fileID: 762948482}
   - component: {fileID: 762948481}
-  - component: {fileID: 762948480}
   - component: {fileID: 762948479}
-  - component: {fileID: 762948478}
   m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -2272,25 +2270,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &762948478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762948477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d27e8b270622a04fb03719e2e5d11ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Switch2DMode
-  player: {fileID: 347465235}
-  playerCamera: {fileID: 1409829085}
-  playerController: {fileID: 347465237}
-  playerRigidbody: {fileID: 347465236}
-  cameraHeight: 5
-  cameraZOffset: -10
-  orthographicSize: 5
 --- !u!65 &762948479
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2312,27 +2291,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &762948480
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762948477}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 3, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!23 &762948481
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4754,6 +4712,82 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.7341, y: 0, z: 3.49476}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1359718379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1359718382}
+  - component: {fileID: 1359718381}
+  - component: {fileID: 1359718380}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1359718380
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359718379}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 3.0863247, z: 1}
+  m_Center: {x: 0, y: 1.0431623, z: 0}
+--- !u!114 &1359718381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359718379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d27e8b270622a04fb03719e2e5d11ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Switch2DMode
+  player: {fileID: 347465235}
+  playerCamera: {fileID: 1409829085}
+  playerController: {fileID: 347465237}
+  playerRigidbody: {fileID: 347465236}
+  moveCameraScript: {fileID: 13895870}
+  cameraHolder: {fileID: 13895869}
+  cameraPos: {fileID: 891337705}
+  cameraHeight: 5
+  cameraZOffset: -10
+  orthographicSize: 5
+--- !u!4 &1359718382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359718379}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -61.83, y: 5.67, z: -1}
+  m_LocalScale: {x: 3, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -8034,5 +8068,6 @@ SceneRoots:
   - {fileID: 1601831828}
   - {fileID: 112064061}
   - {fileID: 744254837}
+  - {fileID: 1359718382}
   - {fileID: 762948483}
   - {fileID: 1052484051}

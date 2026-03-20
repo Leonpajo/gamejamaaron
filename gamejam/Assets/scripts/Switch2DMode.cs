@@ -7,6 +7,9 @@ public class Switch2DMode : MonoBehaviour
     public Camera playerCamera;
     public PlayerController playerController;
     public Rigidbody playerRigidbody;
+    public MoveCamera moveCameraScript;
+    public Transform cameraHolder;
+    public Transform cameraPos;
 
     [Header("2D Settings")]
     public float cameraHeight = 5f;
@@ -61,27 +64,25 @@ public class Switch2DMode : MonoBehaviour
     {
         _is2D = true;
 
-        // Switch to orthographic camera
         playerCamera.orthographic = true;
         playerCamera.orthographicSize = orthographicSize;
 
-        // Lock camera look
+        if (moveCameraScript != null)
+            moveCameraScript.enabled = false;
+
         _playerCam = playerCamera.GetComponent<PlayerCam>();
         if (_playerCam != null)
             _playerCam.enabled = false;
 
-        // Lock Z axis on rigidbody
         if (playerRigidbody != null)
         {
             playerRigidbody.constraints = RigidbodyConstraints.FreezePositionZ
                 | RigidbodyConstraints.FreezeRotation;
         }
 
-        // Disable 3D movement
         if (playerController != null)
             playerController.enabled = false;
 
-        // Enable 2D movement
         _movement2D = other.gameObject.GetComponent<PlayerMovement2D>();
         if (_movement2D == null)
             _movement2D = other.gameObject.AddComponent<PlayerMovement2D>();
@@ -95,23 +96,34 @@ public class Switch2DMode : MonoBehaviour
     {
         _is2D = false;
 
-        // Switch back to perspective camera
         playerCamera.orthographic = false;
 
-        // Re-enable camera look
+        // Snap CameraHolder back to player
+        if (cameraHolder != null && cameraPos != null)
+        {
+            cameraHolder.position = cameraPos.position;
+            playerCamera.transform.localPosition = Vector3.zero;
+            playerCamera.transform.localRotation = Quaternion.identity;
+        }
+
+        if (moveCameraScript != null)
+            moveCameraScript.enabled = true;
+
         if (_playerCam != null)
             _playerCam.enabled = true;
 
-        // Restore rigidbody constraints
         if (playerRigidbody != null)
             playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 
-        // Re-enable 3D movement
         if (playerController != null)
             playerController.enabled = true;
 
-        // Disable 2D movement
         if (_movement2D != null)
             _movement2D.enabled = false;
+
+        // Reset player Z
+        Vector3 pos = player.position;
+        pos.z = transform.position.z;
+        player.position = pos;
     }
 }

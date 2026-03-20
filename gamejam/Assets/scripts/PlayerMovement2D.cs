@@ -12,6 +12,7 @@ public class PlayerMovement2D : MonoBehaviour
 
     private Rigidbody rb;
     private bool grounded;
+    private bool _wasGrounded;
     private bool readyToJump = true;
 
     private void Awake()
@@ -27,16 +28,17 @@ public class PlayerMovement2D : MonoBehaviour
 
     private void Update()
     {
+        _wasGrounded = grounded;
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
         rb.linearDamping = grounded ? groundDrag : 0f;
 
-        if (Input.GetKeyDown(jumpKey) && grounded && readyToJump)
+        if (Input.GetKeyDown(jumpKey) && _wasGrounded && readyToJump)
         {
             readyToJump = false;
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, 0f);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-            Invoke(nameof(ResetJump), 0.3f);
+            Invoke(nameof(ResetJump), 0.5f);
         }
     }
 
