@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDirection;
     Rigidbody rb;
 
+    [HideInInspector] public bool is2D = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -42,25 +44,29 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
-        MyInput();
+
+        if (is2D)
+            Handle2DInput();
+        else
+            MyInput();
+
         SpeedControl();
 
-        if (grounded)
-            rb.linearDamping = groundDrag;
-        else
-            rb.linearDamping = 0;
+        rb.linearDamping = grounded ? groundDrag : 0;
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (is2D)
+            Move2D();
+        else
+            MovePlayer();
     }
 
     private void MyInput()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-
         isSprinting = Input.GetKey(sprintKey);
         moveSpeed = isSprinting ? sprintSpeed : walkSpeed;
 
@@ -72,11 +78,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Handle2DInput()
+    {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = 0f;
+        moveSpeed = walkSpeed;
+
+        if (Input.GetKeyDown(jumpKey) && grounded && readyToJump)
+        {
+            readyToJump = false;
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, 0f);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            Invoke(nameof(ResetJump), 0.2f);
+        }
+    }
+
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        // Wall stick fix — dont push into walls while airborne
         if (!grounded && moveDirection != Vector3.zero)
         {
             if (Physics.Raycast(transform.position, moveDirection.normalized, 0.6f, whatIsGround))
@@ -89,8 +109,24 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }
 
+    private void Move2D()
+    {
+        rb.AddForce(new Vector3(horizontalInput * moveSpeed * 10f, 0f, 0f), ForceMode.Force);
+
+        float xSpeed = Mathf.Abs(rb.linearVelocity.x);
+        if (xSpeed > moveSpeed)
+        {
+            rb.linearVelocity = new Vector3(
+                Mathf.Sign(rb.linearVelocity.x) * moveSpeed,
+                rb.linearVelocity.y,
+                0f);
+        }
+    }
+
     private void SpeedControl()
     {
+        if (is2D) return;
+
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         if (flatVel.magnitude > moveSpeed)
         {

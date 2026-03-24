@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   npcName: muai
   lines:
-  - "oho moi vihdoinkin sin\xE4 tulla"
-  - "hypp\xE4\xE4 alas veli"
+  - Veli varovainen, liukas reitti!
