@@ -152,4 +152,26 @@ public class Switch2DMode : MonoBehaviour
         _is2D = false;
         _transitioning = false;
     }
+    public void ForceReset3D()
+    {
+        StopAllCoroutines();
+
+        _is2D = false;
+        _transitioning = false;
+
+        playerCamera.orthographic = false;
+
+        if (playerRigidbody != null)
+            playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+
+        if (cameraHolder != null && cameraPos != null)
+        {
+            cameraHolder.position = cameraPos.position;
+            playerCamera.transform.localPosition = Vector3.zero;
+            playerCamera.transform.localRotation = Quaternion.identity;
+        }
+
+        if (moveCameraScript != null) moveCameraScript.enabled = true;
+        if (_playerCam != null) _playerCam.enabled = true;
+    }
 }
