@@ -1,9 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Attach to the Train GameObject.
-/// Add a Rigidbody and a SphereCollider (Is Trigger) to the train.
-/// Press E near the train to delete the player and start driving.
 /// </summary>
 public class TrainController : MonoBehaviour
 {
@@ -11,10 +9,19 @@ public class TrainController : MonoBehaviour
     public float acceleration = 15f;
     public float maxSpeed = 20f;
     public float turnSpeed = 60f;
+    public float airMultiplier = 0.3f;
 
-    [Header("Physics")]
-    [Tooltip("Lower = tips easier, more negative = more stable")]
+    [Header("Self Righting")]
+    public float uprightTorque = 500f;
+    public float uprightDamping = 5f;
+
+    [Header("Center of Mass")]
     public float centerOfMassY = -0.5f;
+
+    [Header("Ground Check")]
+    public float trainHeight = 2f;
+    public LayerMask whatIsGround;
+    private bool grounded;
 
     [Header("References")]
     public string playerTag = "Player";
@@ -29,10 +36,9 @@ public class TrainController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        // Allow tipping forward/back but not sideways roll
-        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
+        // Allow full physics rotation (no freezing now)
+        rb.constraints = RigidbodyConstraints.None;
 
-        // Set center of mass low so it tips naturally when unbalanced
         rb.centerOfMass = new Vector3(0f, centerOfMassY, 0f);
 
         if (trainCamera != null)
@@ -41,6 +47,9 @@ public class TrainController : MonoBehaviour
 
     private void Update()
     {
+        // Ground check
+        grounded = Physics.Raycast(transform.position, Vector3.down, trainHeight * 0.5f + 0.3f, whatIsGround);
+
         if (_playerInRange && !_isDriving && Input.GetKeyDown(interactKey))
             StartDriving();
     }
@@ -52,9 +61,17 @@ public class TrainController : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
 
-        rb.AddForce(-transform.forward * vertical * acceleration, ForceMode.Acceleration);
+        // Movement
+        if (grounded)
+        {
+            rb.AddForce(-transform.forward * vertical * acceleration, ForceMode.Acceleration);
+        }
+        else
+        {
+            rb.AddForce(-transform.forward * vertical * acceleration * airMultiplier, ForceMode.Acceleration);
+        }
 
-        // Clamp speed
+        // Speed cap
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         if (flatVel.magnitude > maxSpeed)
         {
@@ -62,16 +79,32 @@ public class TrainController : MonoBehaviour
             rb.linearVelocity = new Vector3(limited.x, rb.linearVelocity.y, limited.z);
         }
 
-        // Slow down when no input
+        // Braking
         if (vertical == 0)
-            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, Time.fixedDeltaTime * 2f);
+        {
+            Vector3 braked = new Vector3(0f, rb.linearVelocity.y, 0f);
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, braked, Time.fixedDeltaTime * 2f);
+        }
 
-        // Turn only when moving
+        // Turning
         if (flatVel.magnitude > 0.5f)
         {
             float turn = horizontal * turnSpeed * Time.fixedDeltaTime;
             rb.MoveRotation(rb.rotation * Quaternion.Euler(0f, turn, 0f));
         }
+
+        // 🔥 SELF-RIGHTING SYSTEM (natural fall back)
+        Vector3 currentUp = transform.up;
+        Vector3 targetUp = Vector3.up;
+
+        Vector3 torqueAxis = Vector3.Cross(currentUp, targetUp);
+        float angle = Vector3.Angle(currentUp, targetUp);
+        float strength = angle / 180f;
+
+        rb.AddTorque(torqueAxis * strength * uprightTorque, ForceMode.Acceleration);
+
+        // Damping (prevents wobble)
+        rb.angularVelocity *= (1f - uprightDamping * Time.fixedDeltaTime);
     }
 
     private void StartDriving()
@@ -89,7 +122,6 @@ public class TrainController : MonoBehaviour
             if (moveCamera != null) moveCamera.enabled = false;
         }
 
-        // Delete the player
         GameObject player = GameObject.FindGameObjectWithTag(playerTag);
         if (player != null)
             Destroy(player);
@@ -105,5 +137,24 @@ public class TrainController : MonoBehaviour
     {
         if (!other.CompareTag(playerTag)) return;
         _playerInRange = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Center of mass
+        Vector3 comWorld = transform.TransformPoint(new Vector3(0f, centerOfMassY, 0f));
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(comWorld, 0.2f);
+        Gizmos.DrawLine(transform.position, comWorld);
+
+        // Ground ray
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position,
+            transform.position + Vector3.down * (trainHeight * 0.5f + 0.3f));
+
+#if UNITY_EDITOR
+        UnityEditor.Handles.Label(comWorld + Vector3.up * 0.3f, "Center of Mass");
+#endif
     }
 }
