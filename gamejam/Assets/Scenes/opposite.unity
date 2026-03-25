@@ -6982,6 +6982,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 632727060447256397, guid: e84fa2d9126ec35449faa21983210506, type: 3}
   m_PrefabInstance: {fileID: 1089793665}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1125649166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1125649167}
+  m_Layer: 0
+  m_Name: Fallrespwan
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1125649167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125649166}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.38322, y: 905, z: 1.44233}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1147398202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13586,13 +13617,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725055306886358482}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dea3ee3e2e29ff4196ffea5184270a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FallRespawn
-  deathY: -40
-  spawnPoint: {fileID: 0}
+  deathY: 870
+  spawnPoint: {fileID: 1125649167}
 --- !u!23 &2864589187770347664
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14024,3 +14055,4 @@ SceneRoots:
   - {fileID: 1401192041}
   - {fileID: 70175439}
   - {fileID: 761231096}
+  - {fileID: 1125649167}
