@@ -2030,36 +2030,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1218913706}
   m_SourcePrefab: {fileID: 100100000, guid: 95344ad4f312752489ac7c2ae9134d0b, type: 3}
---- !u!1 &1203695797 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 95344ad4f312752489ac7c2ae9134d0b, type: 3}
-  m_PrefabInstance: {fileID: 1360746034}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1203695798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203695797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d39d7cd1101a2942bc78774082d1c54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Islandbob
-  amplitude: 61.5
-  frequency: 0.06
-  enableXDrift: 0
-  xDriftAmplitude: 1000
-  xDriftFrequencyMultiplier: 0.5
-  enableZDrift: 0
-  zDriftAmplitude: 0.5
-  zDriftFrequencyMultiplier: 0.6
-  enableTilt: 1
-  tiltAmountX: 1.96
-  tiltAmountZ: 2.06
-  tiltFrequencyMultiplier: 0.52
-  randomisePhaseOnStart: 1
 --- !u!1 &1218913705 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 95344ad4f312752489ac7c2ae9134d0b, type: 3}
@@ -2168,10 +2138,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 95344ad4f312752489ac7c2ae9134d0b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 717086801}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 95344ad4f312752489ac7c2ae9134d0b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1203695798}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95344ad4f312752489ac7c2ae9134d0b, type: 3}
 --- !u!4 &1360746035 stripped
 Transform:
