@@ -1250,8 +1250,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 122290715}
+        m_TargetAssemblyTypeName: MainMenu1, Assembly-CSharp
         m_MethodName: OnQuitPressed
         m_Mode: 1
         m_Arguments:
