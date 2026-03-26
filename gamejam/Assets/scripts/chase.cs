@@ -10,7 +10,7 @@ public class DragonEnemy : MonoBehaviour
 
     private void Start()
     {
-        Invoke(nameof(ActivateDragon), 2f);
+        Invoke(nameof(ActivateDragon), 4f);
     }
 
     public void ActivateDragon()
