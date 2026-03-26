@@ -30,6 +30,11 @@ public class SceneTriggerFade : MonoBehaviour
             hasTriggered = true;
             StartCoroutine(FadeAndLoad());
         }
+        if (other.CompareTag("Player"))
+        {
+            hasTriggered = true;
+            StartCoroutine(FadeAndLoad());
+        }
     }
 
     IEnumerator FadeAndLoad()
