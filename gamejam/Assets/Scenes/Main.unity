@@ -2723,10 +2723,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4ce7a041f17427b44b277a9ae852fdee, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2821,7 +2821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoaiAmbientZone
   mainAmbient: {fileID: 2120259160}
-  moaiAmbient: {fileID: 216181057}
+  zoneAmbient: {fileID: 216181057}
 --- !u!1 &234072686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 95344ad4f312752489ac7c2ae9134d0b, type: 3}
@@ -17763,7 +17763,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4ce7a041f17427b44b277a9ae852fdee, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -17861,7 +17861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoaiAmbientZone
   mainAmbient: {fileID: 2120259160}
-  moaiAmbient: {fileID: 816326451}
+  zoneAmbient: {fileID: 816326451}
 --- !u!1 &816574036
 GameObject:
   m_ObjectHideFlags: 0
@@ -31252,17 +31252,17 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4ce7a041f17427b44b277a9ae852fdee, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 2.0123053
+  MaxDistance: 1.8
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -31350,7 +31350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoaiAmbientZone
   mainAmbient: {fileID: 2120259160}
-  moaiAmbient: {fileID: 2088338958}
+  zoneAmbient: {fileID: 2088338958}
 --- !u!1 &2090922315
 GameObject:
   m_ObjectHideFlags: 0
