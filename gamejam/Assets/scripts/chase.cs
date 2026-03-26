@@ -1,16 +1,43 @@
 using UnityEngine;
 
-public class chase : MonoBehaviour
+public class DragonEnemy : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Transform player;
+    public float speed = 6f;
+    public float chaseRange = 20f;
+    public float floatHeight = 3f;
+    private bool activated = false;
+
+    private void Start()
     {
-        
+        Invoke(nameof(ActivateDragon), 2f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ActivateDragon()
     {
-        
+        activated = true;
+    }
+
+    private void Update()
+    {
+        if (!activated) return;
+
+        Vector3 targetPos = new Vector3(player.position.x, player.position.y + floatHeight, player.position.z);
+        float distance = Vector3.Distance(transform.position, targetPos);
+
+        if (distance <= chaseRange)
+        {
+            Vector3 direction = (targetPos - transform.position).normalized;
+            transform.position += direction * speed * Time.deltaTime;
+            transform.LookAt(targetPos);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DeathScreen.Instance.ShowDeathScreen();
+        }
     }
 }
